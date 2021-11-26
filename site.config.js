@@ -1,10 +1,10 @@
 module.exports = {
   // where it all starts -- the site's root Notion page (required)
-  rootNotionPageId: '78fc5a4b88d74b0e824e29407e9f1ec1',
+  rootNotionPageId: 'f6f85c1f4880434d868f7cd43bd08c33',
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
-  rootNotionSpaceId: null,
+  rootNotionSpaceId: 'Lambd4',
 
   // basic site info (required)
   name: 'Transitive Bullshit',
