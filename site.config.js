@@ -7,9 +7,9 @@ module.exports = {
   rootNotionSpaceId: 'Lambd4',
 
   // basic site info (required)
-  name: 'Transitive Bullshit',
+  name: 'hm_dev',
   domain: 'transitivebullsh.it',
-  author: 'Travis Fischer',
+  author: 'hanmil lee',
 
   // open graph metadata (optional)
   description: 'Example site description',
@@ -17,9 +17,9 @@ module.exports = {
   socialImageSubtitle: 'Hello World! 👋',
 
   // social usernames (optional)
-  twitter: 'transitive_bs',
-  github: 'transitive-bullshit',
-  linkedin: 'fisch2',
+  // twitter: 'transitive_bs',
+  github: 'hanmilLee',
+  linkedin: 'hanmil-lee-828a57187',
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
@@ -32,7 +32,7 @@ module.exports = {
   imageCDNHost: null,
 
   // Utteranc.es comments via GitHub issue comments (optional)
-  utterancesGitHubRepo: null,
+  utterancesGitHubRepo: 'hanmilLee/nextjs-notion-starter-kit',
 
   // whether or not to enable support for LQIP preview images (optional)
   // NOTE: this requires you to set up Google Firebase and add the environment
