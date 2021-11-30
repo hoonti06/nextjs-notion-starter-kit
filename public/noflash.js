@@ -5,7 +5,7 @@
 
 ;(function () {
   // Change these if you use something different in your hook.
-  var storageKey = 'darkMode'
+  var storageKey = 'lightmode'
   var classNameDark = 'dark-mode'
   var classNameLight = 'light-mode'
 
