@@ -12,14 +12,14 @@ export default class MyDocument extends Document {
 
             <link
               rel='apple-touch-icon'
-              sizes='180x180'
-              href='/apple-touch-icon.png'
+              sizes='256x256'
+              href='/4212916_education_note_notes_student_icon-3.png'
             />
             <link
               rel='icon'
               type='image/png'
-              sizes='96x96'
-              href='/favicon-96x96.png'
+              sizes='128x128'
+              href='/4212916_education_note_notes_student_icon-3.png'
             />
             <link
               rel='icon'
