@@ -3,7 +3,7 @@ import {
   parsePageId,
   getCanonicalPageId as getCanonicalPageIdImpl
 } from 'notion-utils'
-import { inversePageUrlOverrides } from './config'
+// import { inversePageUrlOverrides } from './config'
 
 export const normalizeTitle = (title: string | null): string => {
   return (
@@ -22,16 +22,16 @@ export function getCanonicalPageId(
   recordMap: ExtendedRecordMap,
   { uuid = true }: { uuid?: boolean } = {}
 ): string | null {
-  const cleanPageId = parsePageId(normalizeTitle(pageId), { uuid: false })
+  const cleanPageId = parsePageId(pageId, { uuid: false })
   if (!cleanPageId) {
     return null
   }
 
-  const override = inversePageUrlOverrides[cleanPageId]
+  const override = normalizeTitle(cleanPageId)
   if (override) {
     return override
   } else {
-    return getCanonicalPageIdImpl(normalizeTitle(pageId), recordMap, {
+    return getCanonicalPageIdImpl(pageId, recordMap, {
       uuid
     })
   }
