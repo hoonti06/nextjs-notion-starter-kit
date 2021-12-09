@@ -3,7 +3,7 @@ import {
   parsePageId,
   getCanonicalPageId as getCanonicalPageIdImpl
 } from 'notion-utils'
-// import { inversePageUrlOverrides } from './config'
+import { inversePageUrlOverrides } from './config'
 
 export const normalizeTitle = (title: string | null): string => {
   return (
@@ -27,7 +27,7 @@ export function getCanonicalPageId(
     return null
   }
 
-  const override = normalizeTitle(cleanPageId)
+  const override = inversePageUrlOverrides[normalizeTitle(cleanPageId)]
   if (override) {
     return override
   } else {
