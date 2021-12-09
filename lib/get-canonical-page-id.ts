@@ -27,7 +27,7 @@ export function getCanonicalPageId(
     return null
   }
 
-  const override = inversePageUrlOverrides[normalizeTitle(cleanPageId)]
+  const override = normalizeTitle(inversePageUrlOverrides[cleanPageId])
   if (override) {
     return override
   } else {
