@@ -12,9 +12,9 @@ module.exports = {
   author: 'hanmil lee',
 
   // open graph metadata (optional)
-  // description: 'Example site description',
-  // socialImageTitle: 'Transitive Bullshit',
-  // socialImageSubtitle: 'Hello World! 👋',
+  description: 'Notion blog',
+  socialImageTitle: 'HM_dev',
+  socialImageSubtitle: 'Hello World! 👋',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',
