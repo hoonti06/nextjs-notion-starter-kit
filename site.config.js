@@ -12,7 +12,7 @@ module.exports = {
   author: 'hanmil lee',
 
   // open graph metadata (optional)
-  description: 'HM_dev Notion blog',
+  description: "Hanmil's Notion blog",
   socialImageTitle: 'HM_dev',
   socialImageSubtitle: 'Hello World! 👋',
 
