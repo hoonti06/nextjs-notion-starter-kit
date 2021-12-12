@@ -8,7 +8,7 @@ module.exports = {
 
   // basic site info (required)
   name: 'hm_dev',
-  domain: 'transitivebullsh.it',
+  domain: 'hmdev.vercel.app',
   author: 'hanmil lee',
 
   // open graph metadata (optional)
