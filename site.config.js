@@ -20,6 +20,7 @@ module.exports = {
   // twitter: 'transitive_bs',
   github: 'hanmilLee',
   linkedin: 'hanmil-lee-828a57187',
+  instagram: '2hanmil',
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
