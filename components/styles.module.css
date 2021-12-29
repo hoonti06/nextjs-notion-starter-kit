@@ -58,6 +58,7 @@
 .copyright {
   font-size: 80%;
   padding: 0.5em;
+  display: flex;
 }
 
 .settings,
