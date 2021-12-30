@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import * as React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -136,11 +137,21 @@ export const NotionPage: React.FC<types.PageProps> = ({
     block
   )
 
+  const forhit = `https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhmdev.vercel.app%2F
+    ${pageId}
+    &count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true`
+
   const socialDescription =
     getPageDescription(block, recordMap) ?? config.description
 
   let comments: React.ReactNode = null
-  let pageAside: React.ReactChild = null
+
+  let pageAside: React.ReactChild = (
+    <div>
+      <br></br>
+      <img src={forhit} />
+    </div>
+  )
 
   // only display comments and page actions on blog post pages
   if (isBlogPost) {
@@ -272,11 +283,14 @@ export const NotionPage: React.FC<types.PageProps> = ({
         searchNotion={searchNotion}
         pageFooter={comments}
         pageAside={pageAside}
+        // pageFooter={pageAside}
         footer={
-          <Footer
-            isDarkMode={darkMode.value}
-            toggleDarkMode={darkMode.toggle}
-          />
+          <>
+            <Footer
+              isDarkMode={darkMode.value}
+              toggleDarkMode={darkMode.toggle}
+            />
+          </>
         }
       />
 
