@@ -35,7 +35,7 @@ import { Footer } from './Footer'
 import { PageSocial } from './PageSocial'
 import { GitHubShareButton } from './GitHubShareButton'
 import { ReactUtterances } from './ReactUtterances'
-
+// import { ReactCusdis } from 'react-cusdis'
 import styles from './styles.module.css'
 
 // const Code = dynamic(() =>
@@ -137,9 +137,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
     block
   )
 
-  const forhit = `https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhmdev.vercel.app%2F
-    ${pageId}
-    &count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true`
+  const forhit = `https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${canonicalPageUrl}&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true`
 
   const socialDescription =
     getPageDescription(block, recordMap) ?? config.description
@@ -164,6 +162,41 @@ export const NotionPage: React.FC<types.PageProps> = ({
           theme={darkMode.value ? 'photon-dark' : 'github-light'}
         />
       )
+      // } else if (config.cusdis) {
+      //   if (!config.cusdis.appId) {
+      //     console.warn('[cusdis]', 'appId is required')
+      //   }
+      //   comments = darkMode.value ? (
+      //     <ReactCusdis
+      //       style={{
+      //         width: '100%',
+      //         marginTop: '30px'
+      //       }}
+      //       attrs={{
+      //         host: config.cusdis.host || 'https://cusdis.com',
+      //         appId: config.cusdis.appId,
+      //         pageId: pageId,
+      //         pageTitle: title,
+      //         pageUrl: canonicalPageUrl,
+      //         theme: 'dark'
+      //       }}
+      //     ></ReactCusdis>
+      //   ) : (
+      //     <ReactCusdis
+      //       style={{
+      //         width: '100%',
+      //         marginTop: '30px'
+      //       }}
+      //       attrs={{
+      //         host: config.cusdis.host || 'https://cusdis.com',
+      //         appId: config.cusdis.appId,
+      //         pageId: pageId,
+      //         pageTitle: title,
+      //         pageUrl: canonicalPageUrl,
+      //         theme: 'light'
+      //       }}
+      //     ></ReactCusdis>
+      //   )
     }
 
     const tweet = getPageTweet(block, recordMap)
