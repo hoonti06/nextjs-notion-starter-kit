@@ -3,7 +3,7 @@ import { FaTwitter, FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
 import { IoSunnyOutline, IoMoonSharp } from 'react-icons/io5'
 import * as config from 'lib/config'
 
-import styles from './styles.module.css'
+import styles from './style.module.css'
 
 // TODO: merge the data and icons from PageSocial with the social links in Footer
 
@@ -67,6 +67,18 @@ export const Footer: React.FC<{
             <FaTwitter />
           </a>
         )}
+
+        {/* {config.zhihu && (
+          <a
+            className={styles.zhihu}
+            href={`https://zhihu.com/people/${config.zhihu}`}
+            title={`Zhihu @${config.zhihu}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaZhihu />
+          </a>
+        )} */}
 
         {config.github && (
           <a
