@@ -55,15 +55,6 @@ export const instagram: string | null = getSiteConfig('instagram', null)
 // Optional Cusdis widget https://cusdis.com
 // export const cusdis = getSiteConfig('cusdis', null)
 
-export const socialImageTitle: string | null = getSiteConfig(
-  'socialImageTitle',
-  null
-)
-export const socialImageSubtitle: string | null = getSiteConfig(
-  'socialImageSubtitle',
-  null
-)
-
 // default notion values for site-wide consistency (optional; may be overridden on a per-page basis)
 export const defaultPageIcon: string | null = getSiteConfig(
   'defaultPageIcon',
@@ -105,7 +96,8 @@ export const includeNotionIdInUrls: boolean = getSiteConfig(
 // ----------------------------------------------------------------------------
 
 // Optional redis instance for persisting preview images
-export const isRedisEnabled: boolean = getSiteConfig('isRedisEnabled', false)
+export const isRedisEnabled: boolean =
+  getSiteConfig('isRedisEnabled', false) || !!getEnv('REDIS_ENABLED', null)
 
 // (if you want to enable redis, only REDIS_HOST and REDIS_PASSWORD are required)
 // we recommend that you store these in a local `.env` file

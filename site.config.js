@@ -13,8 +13,8 @@ export default {
 
   // open graph metadata (optional)
   description: "Hanmil's Notion blog",
-  socialImageTitle: 'HM_dev',
-  socialImageSubtitle: 'Hello World! 👋',
+  // socialImageTitle: 'HM_dev',
+  // socialImageSubtitle: 'Hello World! 👋',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',
