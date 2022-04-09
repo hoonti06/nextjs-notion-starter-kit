@@ -29,7 +29,6 @@ export default class MyDocument extends Document {
               sizes='128x128'
               href='/4212916_education_note_notes_student_icon-3.png'
             />
-            <link rel='shortcut icon' href='/favicon.ico' />
             <link
               rel='icon'
               type='image/png'
