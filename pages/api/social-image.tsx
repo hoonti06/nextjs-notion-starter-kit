@@ -15,6 +15,7 @@ import { getSiteForDomain } from 'lib/get-site-for-domain'
 import { mapImageUrl } from 'lib/map-image-url'
 import * as config from 'lib/config'
 import { interRegular } from 'lib/fonts'
+import { normalizeTitle} from '../../lib/get-canonical-page-id'
 
 /**
  * Social image generation via headless chrome.
@@ -47,7 +48,7 @@ export default withOGImage<'query', 'id'>({
 
       const isBlogPost =
         block.type === 'page' && block.parent_table === 'collection'
-      const title = getBlockTitle(block, recordMap) || site.name
+      const title = normalizeTitle(getBlockTitle(block, recordMap) || site.name)
       const image = mapImageUrl(
         getPageProperty<string>('Social Image', block, recordMap) ||
           (block as PageBlock).format?.page_cover ||
