@@ -1,13 +1,19 @@
 /**
  * Site-wide app configuration.
  *
- * This file pulls from the root "site.config.js" as well as environment variables
+ * This file pulls from the root "site.config.ts" as well as environment variables
  * for optional depenencies.
  */
 
 import { parsePageId } from 'notion-utils'
-import { getSiteConfig, getEnv } from './get-config-value'
-import { PageUrlOverridesMap, PageUrlOverridesInverseMap } from './types'
+import posthog from 'posthog-js'
+import { getEnv, getSiteConfig } from './get-config-value'
+import { NavigationLink } from './site-config'
+import {
+  PageUrlOverridesInverseMap,
+  PageUrlOverridesMap,
+  NavigationStyle
+} from './types'
 
 export const rootNotionPageId: string = parsePageId(
   getSiteConfig('rootNotionPageId'),
@@ -26,18 +32,18 @@ export const rootNotionSpaceId: string | null = parsePageId(
 
 export const pageUrlOverrides = cleanPageUrlMap(
   getSiteConfig('pageUrlOverrides', {}) || {},
-  'pageUrlOverrides'
+  { label: 'pageUrlOverrides' }
+)
+
+export const pageUrlAdditions = cleanPageUrlMap(
+  getSiteConfig('pageUrlAdditions', {}) || {},
+  { label: 'pageUrlAdditions' }
 )
 
 export const inversePageUrlOverrides = invertPageUrlOverrides(pageUrlOverrides)
 
-export const pageUrlAdditions = cleanPageUrlMap(
-  getSiteConfig('pageUrlAdditions', {}) || {},
-  'pageUrlAdditions'
-)
-
-export const isDev =
-  process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
+export const environment = process.env.NODE_ENV || 'development'
+export const isDev = environment === 'development'
 
 // general site config
 export const name: string = getSiteConfig('name')
@@ -47,13 +53,13 @@ export const description: string = getSiteConfig('description', 'Notion Blog')
 
 // social accounts
 export const twitter: string | null = getSiteConfig('twitter', null)
-export const zhihu: string | null = getSiteConfig('zhihu', null)
 export const github: string | null = getSiteConfig('github', null)
 export const linkedin: string | null = getSiteConfig('linkedin', null)
 export const instagram: string | null = getSiteConfig('instagram', null)
 
 // Optional Cusdis widget https://cusdis.com
 // export const cusdis = getSiteConfig('cusdis', null)
+export const zhihu: string | null = getSiteConfig('zhihu', null)
 
 // default notion values for site-wide consistency (optional; may be overridden on a per-page basis)
 export const defaultPageIcon: string | null = getSiteConfig(
@@ -87,11 +93,24 @@ export const isTweetEmbedSupportEnabled: boolean = getSiteConfig(
   true
 )
 
-// where it all starts -- the site's root Notion page
+// Optional whether or not to include the Notion ID in page URLs or just use slugs
 export const includeNotionIdInUrls: boolean = getSiteConfig(
   'includeNotionIdInUrls',
   !!isDev
 )
+
+export const navigationStyle: NavigationStyle = getSiteConfig(
+  'navigationStyle',
+  'default'
+)
+
+export const navigationLinks: Array<NavigationLink | null> = getSiteConfig(
+  'navigationLinks',
+  null
+)
+
+// Optional site search
+export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true)
 
 // ----------------------------------------------------------------------------
 
@@ -123,22 +142,31 @@ export const host = isDev ? `http://localhost:${port}` : `https://${domain}`
 export const apiBaseUrl = `/api`
 
 export const api = {
-  searchNotion: `${apiBaseUrl}/search-notion`
+  searchNotion: `${apiBaseUrl}/search-notion`,
+  getSocialImage: `${apiBaseUrl}/social-image`
 }
 
 // ----------------------------------------------------------------------------
 
 export const fathomId = isDev ? null : process.env.NEXT_PUBLIC_FATHOM_ID
-
 export const fathomConfig = fathomId
   ? {
       excludedDomains: ['localhost', 'localhost:3000']
     }
   : undefined
 
+export const posthogId = process.env.NEXT_PUBLIC_POSTHOG_ID
+export const posthogConfig: posthog.Config = {
+  api_host: 'https://app.posthog.com'
+}
+
 function cleanPageUrlMap(
   pageUrlMap: PageUrlOverridesMap,
-  label: string
+  {
+    label
+  }: {
+    label: string
+  }
 ): PageUrlOverridesMap {
   return Object.keys(pageUrlMap).reduce((acc, uri) => {
     const pageId = pageUrlMap[uri]

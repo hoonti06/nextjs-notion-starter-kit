@@ -1,6 +1,6 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { IconContext } from 'react-icons'
+import { IconContext } from '@react-icons/all-files'
 
 export default class MyDocument extends Document {
   render() {
@@ -29,17 +29,12 @@ export default class MyDocument extends Document {
               sizes='128x128'
               href='/4212916_education_note_notes_student_icon-3.png'
             />
+            <link rel='shortcut icon' href='/favicon.ico' />
             <link
               rel='icon'
               type='image/png'
               sizes='32x32'
-              href='/favicon-32x32.png'
-            />
-            <link
-              rel='icon'
-              type='image/png'
-              sizes='16x16'
-              href='/favicon-16x16.png'
+              href='favicon.png'
             />
 
             <link rel='manifest' href='/manifest.json' />
