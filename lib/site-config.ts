@@ -13,6 +13,7 @@ export interface SiteConfig {
   github?: string
   linkedin?: string
   zhihu?: string
+  instagram?: string
 
   defaultPageIcon?: string | null
   defaultPageCover?: string | null
@@ -27,7 +28,7 @@ export interface SiteConfig {
   pageUrlOverrides?: types.PageUrlOverridesMap
   pageUrlAdditions?: types.PageUrlOverridesMap
 
-  navigationStyle?: types.NavigationStyle
+  // navigationStyle?: types.NavigationStyle
   navigationLinks?: Array<NavigationLink>
 }
 

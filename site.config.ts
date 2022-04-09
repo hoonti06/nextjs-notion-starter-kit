@@ -64,7 +64,7 @@ export default {
   navigationStyle: 'custom',
   navigationLinks: [
     {
-      title: 'About',
+      title: 'About me',
       pageId: 'a32a59aec23c41e08452757e94d96418'
     },
     // {
