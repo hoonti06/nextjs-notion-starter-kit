@@ -15,7 +15,6 @@ import { getSiteForDomain } from 'lib/get-site-for-domain'
 import { mapImageUrl } from 'lib/map-image-url'
 import * as config from 'lib/config'
 import { interRegular } from 'lib/fonts'
-import { normalizeTitle} from '../../lib/get-canonical-page-id'
 
 /**
  * Social image generation via headless chrome.
@@ -48,7 +47,7 @@ export default withOGImage<'query', 'id'>({
 
       const isBlogPost =
         block.type === 'page' && block.parent_table === 'collection'
-      const title = normalizeTitle(getBlockTitle(block, recordMap) || site.name)
+      const title = getBlockTitle(block, recordMap) || site.name
       const image = mapImageUrl(
         getPageProperty<string>('Social Image', block, recordMap) ||
           (block as PageBlock).format?.page_cover ||
@@ -155,6 +154,9 @@ export default withOGImage<'query', 'id'>({
 })
 
 const style = `
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
 @font-face {
   font-family: 'Inter';
   font-style:  normal;
@@ -171,7 +173,7 @@ const style = `
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   padding: 0;
   margin: 0;
 }
