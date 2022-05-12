@@ -8,7 +8,7 @@ export default siteConfig({
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: 'Lambd4',
 
-  // basic site info (required)
+  // basic site info (required)åå
   name: 'hm_dev',
   domain: 'hmdev.vercel.app',
   author: 'hanmil lee',
@@ -26,7 +26,7 @@ export default siteConfig({
 
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
-  defaultPageIcon: null,
+  defaultPageIcon:'https://hmdev.vercel.app/IMG_0742.png',
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
