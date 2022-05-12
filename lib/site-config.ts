@@ -18,17 +18,19 @@ export interface SiteConfig {
   defaultPageIcon?: string | null
   defaultPageCover?: string | null
   defaultPageCoverPosition?: number | null
+  
 
   isPreviewImageSupportEnabled?: boolean
   isTweetEmbedSupportEnabled?: boolean
   isRedisEnabled?: boolean
   isSearchEnabled?: boolean
+  utterancesGitHubRepo?: string
 
   includeNotionIdInUrls?: boolean
   pageUrlOverrides?: types.PageUrlOverridesMap
   pageUrlAdditions?: types.PageUrlOverridesMap
 
-  // navigationStyle?: types.NavigationStyle
+  navigationStyle?: types.NavigationStyle
   navigationLinks?: Array<NavigationLink>
 }
 

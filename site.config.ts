@@ -1,4 +1,6 @@
-export default {
+import { siteConfig } from './lib/site-config'
+
+export default siteConfig({
   // where it all starts -- the site's root Notion page (required)
   rootNotionPageId: 'f6f85c1f4880434d868f7cd43bd08c33',
 
@@ -28,11 +30,8 @@ export default {
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
-  // image CDN host to proxy all image requests through (optional)
-  // NOTE: this requires you to set up an external image proxy
-  imageCDNHost: null,
-
   // Utteranc.es comments via GitHub issue comments (optional)
+  
   utterancesGitHubRepo: 'hanmilLee/nextjs-notion-starter-kit',
  
   // Cusdis comment widget (optional)
@@ -72,4 +71,4 @@ export default {
     //   pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
     // }
   ]
-}
+})
