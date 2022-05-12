@@ -31,7 +31,6 @@ export default siteConfig({
   defaultPageCoverPosition: 0.5,
 
   // Utteranc.es comments via GitHub issue comments (optional)
-  
   utterancesGitHubRepo: 'hanmilLee/nextjs-notion-starter-kit',
  
   // Cusdis comment widget (optional)
