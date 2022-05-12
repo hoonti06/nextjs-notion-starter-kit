@@ -243,11 +243,20 @@ export const NotionPage: React.FC<types.PageProps> = ({
     block
   )
 
+  // const forhit = `https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${canonicalPageUrl}&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true`
+
   const socialDescription =
     getPageProperty<string>('Description', block, recordMap) ||
     config.description
 
   let comments: React.ReactNode = null
+
+  // let pageAside: React.ReactChild = (
+  //   <div>
+  //     <br></br>
+  //     <img src={forhit} />
+  //   </div>
+  // )
 
   // only display comments and page actions on blog post pages
   if (isBlogPost) {
