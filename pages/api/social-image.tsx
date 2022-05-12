@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { withOGImage } from 'next-api-og-image'
 
 import {
@@ -11,9 +11,10 @@ import {
 import { PageBlock } from 'notion-types'
 
 import { notion } from 'lib/notion-api'
+import { getSiteForDomain } from 'lib/get-site-for-domain'
 import { mapImageUrl } from 'lib/map-image-url'
-import { interRegular } from 'lib/fonts'
 import * as config from 'lib/config'
+import { interRegular } from 'lib/fonts'
 
 /**
  * Social image generation via headless chrome.
@@ -34,6 +35,7 @@ export default withOGImage<'query', 'id'>({
         throw new Error('Invalid notion page id')
       }
 
+      const site = await getSiteForDomain(config.domain)
       const recordMap = await notion.getPage(pageId)
 
       const keys = Object.keys(recordMap?.block || {})
@@ -45,7 +47,7 @@ export default withOGImage<'query', 'id'>({
 
       const isBlogPost =
         block.type === 'page' && block.parent_table === 'collection'
-      const title = getBlockTitle(block, recordMap) || config.name
+      const title = getBlockTitle(block, recordMap) || site.name
       const image = mapImageUrl(
         getPageProperty<string>('Social Image', block, recordMap) ||
           (block as PageBlock).format?.page_cover ||
@@ -94,7 +96,7 @@ export default withOGImage<'query', 'id'>({
               month: 'long'
             })} ${dateUpdated.getFullYear()}`
           : undefined
-      const detail = date || config.domain
+      const detail = date || site.domain
 
       return (
         <html>
