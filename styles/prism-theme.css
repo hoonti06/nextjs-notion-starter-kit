@@ -28,7 +28,7 @@
   padding: 0.2em 0.4em !important;
 }
 
-.light-mode .notion .notion-inline-code {
+.notion .notion-inline-code {
   color: #ff4081;
   background: rgba(127, 122, 107, 0.1) !important;
   padding: 0.2em 0.4em !important;

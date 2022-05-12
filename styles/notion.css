@@ -116,7 +116,10 @@
 
 .notion-quote {
   padding: 0.2em 0.75em;
-  font-size: 1.1em;
+  line-height: 1.5;
+  font-style: italic;
+  font-size: 1.2em;
+  border-left: 4px solid #67bdfc;
 }
 
 .notion-h1,
@@ -217,13 +220,25 @@
   position: relative;
   transition: unset;
   opacity: 1;
+  border-bottom-width: 0.1rem;
+  background: transparent;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: 0 0.1rem;
 }
 
+.notion-link:focus,
 .notion-link:hover {
-  border-width: 0;
-  border-bottom-width: 3px;
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-  border-image-slice: 1;
+  border-bottom-color: transparent;
+
+  background-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.1rem;
+
+  transition-property: background-position, background-size;
+  transition-duration: 300ms;
 }
 
 .notion-red_background,
@@ -328,6 +343,7 @@
   );
 }
 
+/* disable highlighting in dark mode */
 .dark-mode .notion-red_background,
 .dark-mode .notion-pink_background,
 .dark-mode .notion-blue_background,

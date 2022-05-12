@@ -12,7 +12,8 @@ import { NavigationLink } from './site-config'
 import {
   PageUrlOverridesInverseMap,
   PageUrlOverridesMap,
-  NavigationStyle
+  NavigationStyle,
+  Site
 } from './types'
 
 export const rootNotionPageId: string = parsePageId(
@@ -50,6 +51,7 @@ export const name: string = getSiteConfig('name')
 export const author: string = getSiteConfig('author')
 export const domain: string = getSiteConfig('domain')
 export const description: string = getSiteConfig('description', 'Notion Blog')
+export const language: string = getSiteConfig('language', 'en')
 
 // social accounts
 export const twitter: string | null = getSiteConfig('twitter', null)
@@ -85,12 +87,6 @@ export const utterancesGitHubRepo: string | null = getSiteConfig(
 export const isPreviewImageSupportEnabled: boolean = getSiteConfig(
   'isPreviewImageSupportEnabled',
   false
-)
-
-// Optional whether or not to enable support for LQIP preview images
-export const isTweetEmbedSupportEnabled: boolean = getSiteConfig(
-  'isTweetEmbedSupportEnabled',
-  true
 )
 
 // Optional whether or not to include the Notion ID in page URLs or just use slugs
@@ -147,6 +143,14 @@ export const api = {
 }
 
 // ----------------------------------------------------------------------------
+
+export const site: Site = {
+  domain,
+  name,
+  rootNotionPageId,
+  rootNotionSpaceId,
+  description
+}
 
 export const fathomId = isDev ? null : process.env.NEXT_PUBLIC_FATHOM_ID
 export const fathomConfig = fathomId
