@@ -43,7 +43,7 @@ export const PageHead: React.FC<
       <meta property='og:type' content='website' />
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=G-Z5BHM2E3ZG`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${config.GAId}`}
       />
       <script
         dangerouslySetInnerHTML={{
@@ -51,7 +51,7 @@ export const PageHead: React.FC<
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-Z5BHM2E3ZG', {
+        gtag('config', ${config.GAId}, {
           page_path: window.location.pathname,
         });
         `
