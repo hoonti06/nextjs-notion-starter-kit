@@ -7,7 +7,7 @@
  * places to add some flare.
  */
 
-.notion {
+ .notion {
   --notion-max-width: 720px;
   --notion-header-height: 54px;
 }
@@ -133,7 +133,7 @@
 }
 
 .notion-hr {
-  margin: 6px 0;
+  margin: 2px 0;
 }
 
 @media only screen and (max-width: 920px) {
