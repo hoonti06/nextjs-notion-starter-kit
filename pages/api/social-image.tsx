@@ -25,18 +25,6 @@ export default async function OGImage(req: NextRequest) {
     return new Response('Invalid notion page id', { status: 400 })
   }
 
-<<<<<<< HEAD
-const style = `
-
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
-
-@font-face {
-  font-family: 'Inter';
-  font-style:  normal;
-  font-weight: normal;
-  src: url(data:font/woff2;charset=utf-8;base64,${interRegular}) format('woff2');
-}
-=======
   const pageInfoRes = await fetch(`${apiHost}${api.getNotionPageInfo}`, {
     method: 'POST',
     body: JSON.stringify({ pageId }),
@@ -49,7 +37,6 @@ const style = `
   }
   const pageInfo: NotionPageInfo = await pageInfoRes.json()
   console.log(pageInfo)
->>>>>>> upstream/main
 
   const [interRegularFont, interBoldFont] = await Promise.all([
     interRegularFontP,
@@ -86,13 +73,6 @@ const style = `
               // background, but Satori is still very new, so hopefully we can re-add
               // the blur soon.
 
-<<<<<<< HEAD
-body {
-  font-family: 'Nanum Gothic', sans-serif;
-  padding: 0;
-  margin: 0;
-}
-=======
               // backgroundImage: pageInfo.image
               //   ? `url(${pageInfo.image})`
               //   : undefined,
@@ -103,7 +83,6 @@ body {
             }}
           />
         )}
->>>>>>> upstream/main
 
         <div
           style={{

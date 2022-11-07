@@ -7,11 +7,8 @@ import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
 import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
-<<<<<<< HEAD
 import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram'
-=======
 import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
->>>>>>> upstream/main
 
 import * as config from '@/lib/config'
 import { useDarkMode } from '@/lib/use-dark-mode'
@@ -68,7 +65,7 @@ export const FooterImpl: React.FC = () => {
           </a>
         )}
       </div>
-
+      
       <div className={styles.social}>
         {config.twitter && (
           <a
@@ -118,7 +115,6 @@ export const FooterImpl: React.FC = () => {
           </a>
         )}
 
-<<<<<<< HEAD
         {config.instagram && (
           <a
             className={styles.instagram}
@@ -128,7 +124,9 @@ export const FooterImpl: React.FC = () => {
             rel='noopener noreferrer'
           >
             <FaInstagram />
-=======
+          </a>
+        )}
+        
         {config.newsletter && (
           <a
             className={styles.newsletter}
@@ -150,7 +148,6 @@ export const FooterImpl: React.FC = () => {
             rel='noopener noreferrer'
           >
             <FaYoutube />
->>>>>>> upstream/main
           </a>
         )}
       </div>

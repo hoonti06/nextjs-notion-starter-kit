@@ -6,17 +6,10 @@ import { useRouter } from 'next/router'
 
 import cs from 'classnames'
 import { PageBlock } from 'notion-types'
-<<<<<<< HEAD
-
-// import TweetEmbed from 'react-tweet-embed'
-
-// core notion renderer
-=======
 import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
 import BodyClassName from 'react-body-classname'
->>>>>>> upstream/main
 import { NotionRenderer } from 'react-notion-x'
-import TweetEmbed from 'react-tweet-embed'
+// import TweetEmbed from 'react-tweet-embed'
 import { useSearchParam } from 'react-use'
 
 import * as config from '@/lib/config'
@@ -28,16 +21,13 @@ import { useDarkMode } from '@/lib/use-dark-mode'
 
 import { Footer } from './Footer'
 import { GitHubShareButton } from './GitHubShareButton'
-<<<<<<< HEAD
 import { ReactUtterances } from './ReactUtterances'
 // import { ReactCusdis } from 'react-cusdis'
-=======
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
 import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
->>>>>>> upstream/main
 import styles from './styles.module.css'
 
 // -----------------------------------------------------------------------------
