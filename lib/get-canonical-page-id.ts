@@ -1,5 +1,9 @@
 import { ExtendedRecordMap } from 'notion-types'
 import { uuidToId, getBlockTitle } from 'notion-utils'
+// import {
+//   getCanonicalPageId as getCanonicalPageIdImpl,
+//   parsePageId
+// } from 'notion-utils'
 
 export const getCanonicalPageId = (
   pageId: string,
