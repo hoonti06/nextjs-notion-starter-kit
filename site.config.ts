@@ -64,11 +64,15 @@ export default siteConfig({
   navigationLinks: [
     {
       title: 'About me',
-      url: 'https://www.linkedin.com/in/hanmil-lee-828a57187/'
+      pageId: 'a32a59aec23c41e08452757e94d96418'
     },
+    // {
+    //   title: 'About me',
+    //   url: 'https://www.linkedin.com/in/hanmil-lee-828a57187/'
+    // },
     // {
     //   title: 'Contact',
     //   pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
     // }
   ]
-})
+})  
