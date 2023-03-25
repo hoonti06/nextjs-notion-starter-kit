@@ -12,7 +12,7 @@ import posthog from 'posthog-js'
 // import 'prismjs/themes/prism-okaidia.css'
 // global style overrides for notion
 // global style overrides for prism theme (optional)
-import 'styles/custom/index.scss';
+import '~/styles/custom/index.scss';
 
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
