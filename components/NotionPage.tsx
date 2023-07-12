@@ -66,7 +66,8 @@ const Code = dynamic(() =>
       import('prismjs/components/prism-stylus.js'),
       import('prismjs/components/prism-swift.js'),
       import('prismjs/components/prism-wasm.js'),
-      import('prismjs/components/prism-yaml.js')
+      import('prismjs/components/prism-yaml.js'),
+      import('prismjs/components/prism-mermaid.js')
     ])
     return m.Code
   })
