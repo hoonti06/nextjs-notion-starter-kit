@@ -1,5 +1,8 @@
 import { ExtendedRecordMap, SearchParams, SearchResults } from 'notion-types'
 import { mergeRecordMaps } from 'notion-utils'
+export { getAllPosts } from './notion/getAllPosts'
+export { getAllTagsFromPosts } from './notion/getAllTagsFromPosts'
+export { getPostBlocks } from './notion/getPostBlocks'
 import pMap from 'p-map'
 import pMemoize from 'p-memoize'
 

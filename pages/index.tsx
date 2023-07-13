@@ -1,23 +1,40 @@
-import * as React from 'react'
+import { clientConfig } from '@/lib/server/config'
 
-import { NotionPage } from '@/components/NotionPage'
-import { domain } from '@/lib/config'
-import { resolveNotionPage } from '@/lib/resolve-notion-page'
+import Container from '@/components/Container'
+import BlogPost from '@/components/BlogPost'
+import Pagination from '@/components/Pagination'
+import { getAllPosts } from '@/lib/notion'
+import { useConfig } from '@/lib/nobelium-config'
 
-export const getStaticProps = async () => {
-  try {
-    const props = await resolveNotionPage(domain)
-
-    return { props, revalidate: 10 }
-  } catch (err) {
-    console.error('page error', domain, err)
-
-    // we don't want to publish the error version of this page, so
-    // let next.js know explicitly that incremental SSG failed
-    throw err
+export async function getStaticProps () {
+  const posts = await getAllPosts({ includePages: false })
+  const postsToShow = posts.slice(0, clientConfig.postsPerPage)
+  const totalPosts = posts.length
+  const showNext = totalPosts > clientConfig.postsPerPage
+  return {
+    props: {
+      page: 1, // current page is 1
+      postsToShow,
+      showNext
+    },
+    revalidate: 1
   }
 }
 
-export default function NotionDomainPage(props) {
-  return <NotionPage {...props} />
+export default function Blog ({ postsToShow, page, showNext }) {
+  const { title, description } = useConfig()
+
+  return (
+    <Container title={title} description={description}>
+      {postsToShow.map(post => (
+        <BlogPost key={post.id} post={post} />
+      ))}
+      {showNext && <Pagination page={page} showNext={showNext} />}
+    </Container>
+  )
 }
+
+
+// export default function NotionDomainPage(props) {
+//   return <NotionPage {...props} />
+// }
