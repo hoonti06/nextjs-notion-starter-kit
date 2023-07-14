@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
-import { useConfig } from '@/lib/nobelium-config'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
+import React from "react";
 
 dayjs.extend(localizedFormat)
 
 const loaded = {}
 
 export default function FormattedDate ({ date }) {
-  const lang = useConfig().lang.slice(0, 2)
+  const lang = config.lang.slice(0, 2)
   const [isLocaleLoaded, setIsLocaleLoaded] = useState(loaded[lang] === true)
 
   useEffect(() => {
     if (!isLocaleLoaded) {
-      loaded[lang] ??= import(`dayjs/locale/${lang}`).then(
+      // https://github.com/iamkun/dayjs/issues/792#issuecomment-737206977
+      loaded[lang] ??= import(`dayjs/locale/${lang}.js`).then(
         () => {
           loaded[lang] = true
           dayjs.locale(lang)

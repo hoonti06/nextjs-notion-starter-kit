@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import React from "react";
 
 const TagItem = ({ tag }) => (
   <Link href={`/tag/${encodeURIComponent(tag)}`}>

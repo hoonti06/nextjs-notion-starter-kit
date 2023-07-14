@@ -3,7 +3,9 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import cn from 'classnames'
 import { fetchCusdisLang } from '@/lib/cusdisLang'
-import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
+// import { useConfig } from '@/lib/nobelium-config'
+import React from "react";
 
 const GitalkComponent = dynamic(
   () => {
@@ -26,7 +28,7 @@ const CusdisComponent = dynamic(
 
 const Comments = ({ frontMatter }) => {
   const router = useRouter()
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
 
   const fullWidth = frontMatter.fullWidth ?? false
 
@@ -37,33 +39,33 @@ const Comments = ({ frontMatter }) => {
         fullWidth ? 'md:px-24' : 'mx-auto max-w-2xl',
       )}
     >
-      {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
+      {config.comment && config.comment.provider === 'gitalk' && (
         <GitalkComponent
           options={{
             id: frontMatter.id,
             title: frontMatter.title,
-            clientID: BLOG.comment.gitalkConfig.clientID,
-            clientSecret: BLOG.comment.gitalkConfig.clientSecret,
-            repo: BLOG.comment.gitalkConfig.repo,
-            owner: BLOG.comment.gitalkConfig.owner,
-            admin: BLOG.comment.gitalkConfig.admin,
-            distractionFreeMode: BLOG.comment.gitalkConfig.distractionFreeMode
+            clientID: config.comment.gitalkConfig.clientID,
+            clientSecret: config.comment.gitalkConfig.clientSecret,
+            repo: config.comment.gitalkConfig.repo,
+            owner: config.comment.gitalkConfig.owner,
+            admin: config.comment.gitalkConfig.admin,
+            distractionFreeMode: config.comment.gitalkConfig.distractionFreeMode
           }}
         />
       )}
-      {BLOG.comment && BLOG.comment.provider === 'utterances' && (
+      {config.comment && config.comment.provider === 'utterances' && (
         <UtterancesComponent issueTerm={frontMatter.id} />
       )}
-      {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
+      {config.comment && config.comment.provider === 'cusdis' && (
         <CusdisComponent
-          lang={fetchCusdisLang(BLOG.lang)}
+          lang={fetchCusdisLang(config.lang)}
           attrs={{
-            host: BLOG.comment.cusdisConfig.host,
-            appId: BLOG.comment.cusdisConfig.appId,
+            host: config.comment.cusdisConfig.host,
+            appId: config.comment.cusdisConfig.appId,
             pageId: frontMatter.id,
             pageTitle: frontMatter.title,
-            pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance
+            pageUrl: config.link + router.asPath,
+            theme: config.appearance
           }}
         />
       )}

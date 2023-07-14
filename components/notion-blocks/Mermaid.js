@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import mermaid from 'mermaid'
 import useTheme from '@/lib/theme'
 import { getTextContent } from 'notion-utils'
+import React from "react";
 
 export default function Mermaid ({ block }) {
   const { dark } = useTheme()

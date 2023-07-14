@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types'
 import Image from 'next/image'
 import cn from 'classnames'
-import { useConfig } from '@/lib/nobelium-config'
-import useTheme from '@/lib/theme'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
+// import useTheme from '@/lib/theme'
 import FormattedDate from '@/components/FormattedDate'
 import TagItem from '@/components/TagItem'
-import NotionRenderer from '@/components/NotionRenderer'
+// import NotionRenderer from '@/components/NotionRenderer'
+import {NotionPage} from '@/components/NotionPage'
 import TableOfContents from '@/components/TableOfContents'
+import React from "react"
 
 /**
  * A post renderer
@@ -20,9 +23,9 @@ import TableOfContents from '@/components/TableOfContents'
  * @prop {boolean} [fullWidth] - Whether in full-width mode
  */
 export default function Post (props) {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
   const { post, blockMap, emailHash, fullWidth = false } = props
-  const { dark } = useTheme()
+  // const { dark } = useTheme()
 
   return (
     <article className={cn('flex flex-col', fullWidth ? 'md:px-24' : 'items-center')}>
@@ -38,15 +41,15 @@ export default function Post (props) {
           { 'max-w-2xl px-4': !fullWidth }
         )}>
           <div className="flex mb-4">
-            <a href={BLOG.socialLink || '#'} className="flex">
+            <a href={config.socialLink || '#'} className="flex">
               <Image
-                alt={BLOG.author}
+                alt={config.author}
                 width={24}
                 height={24}
                 src={`https://gravatar.com/avatar/${emailHash}`}
                 className="rounded-full"
               />
-              <p className="ml-2 md:block">{BLOG.author}</p>
+              <p className="ml-2 md:block">{config.author}</p>
             </a>
             <span className="block">&nbsp;/&nbsp;</span>
           </div>
@@ -65,7 +68,8 @@ export default function Post (props) {
       <div className="self-stretch -mt-4 flex flex-col items-center lg:flex-row lg:items-stretch">
         {!fullWidth && <div className="flex-1 hidden lg:block" />}
         <div className={fullWidth ? 'flex-1 pr-4' : 'flex-none w-full max-w-2xl px-4'}>
-          <NotionRenderer recordMap={blockMap} fullPage={false} darkMode={dark} />
+          {/*<NotionRenderer recordMap={blockMap} fullPage={false} darkMode={dark} />*/}
+          <NotionPage {...props} />
         </div>
         <div className={cn('order-first lg:order-[unset] w-full lg:w-auto max-w-2xl lg:max-w-[unset] lg:min-w-[160px]', fullWidth ? 'flex-none' : 'flex-1')}>
           {/* `65px` is the height of expanded nav */}

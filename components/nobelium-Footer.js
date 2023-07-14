@@ -1,11 +1,14 @@
-import { useConfig } from '@/lib/config'
+// import { useConfig } from '@/lib/config'
+import * as config from '@/lib/config'
 import Vercel from '@/components/Vercel'
+import React from "react";
+
 const NobeliumFooter = ({ fullWidth }) => {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
 
   const d = new Date()
   const y = d.getFullYear()
-  const from = +BLOG.since
+  const from = +config.since
   return (
     <div
       className={`mt-6 flex-shrink-0 m-auto w-full text-gray-500 dark:text-gray-400 transition-all ${
@@ -16,7 +19,7 @@ const NobeliumFooter = ({ fullWidth }) => {
       <div className="my-4 text-sm leading-6">
         <div className="flex align-baseline justify-between flex-wrap">
           <p>
-            © {BLOG.author} {from === y || !from ? y : `${from} - ${y}`}
+            © {config.author} {from === y || !from ? y : `${from} - ${y}`}
           </p>
           <Vercel />
         </div>

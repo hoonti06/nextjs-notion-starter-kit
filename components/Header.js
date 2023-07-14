@@ -1,18 +1,20 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useConfig } from '@/lib/nobelium-config'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
 import { useLocale } from '@/lib/locale'
 import useTheme from '@/lib/theme'
+import React from "react";
 
 const NavBar = () => {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
   const locale = useLocale()
   const links = [
-    { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
-    { id: 1, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
-    { id: 2, name: locale.NAV.RSS, to: '/feed', show: true, external: true },
-    { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
+    { id: 0, name: ''/*locale.NAV.INDEX*/, to: config.path || '/', show: true },
+    { id: 1, name: ''/*locale.NAV.ABOUT*/, to: '/about', show: config.showAbout },
+    { id: 2, name: ''/*locale.NAV.RSS*/, to: '/feed', show: true, external: true },
+    { id: 3, name: ''/*locale.NAV.SEARCH*/, to: '/search', show: true }
   ]
   return (
     <div className="flex-shrink-0">
@@ -34,7 +36,7 @@ const NavBar = () => {
 }
 
 export default function Header ({ navBarTitle, fullWidth }) {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
   const { dark } = useTheme()
 
   // Favicon
@@ -49,7 +51,7 @@ export default function Header ({ navBarTitle, fullWidth }) {
     [dark]
   )
 
-  const useSticky = !BLOG.autoCollapsedNavBar
+  const useSticky = !config.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const handler = useCallback(([entry]) => {
@@ -102,19 +104,19 @@ export default function Header ({ navBarTitle, fullWidth }) {
           />
         </svg>
         <div className="flex items-center">
-          <Link href="/" aria-label={BLOG.title}>
+          <Link href="/" aria-label={config.title}>
             <Image
               src={favicon}
               width={24}
               height={24}
-              alt={BLOG.title}
+              alt={config.title}
               onError={() => setFavicon(true)}
             />
           </Link>
           <HeaderName
             ref={titleRef}
-            siteTitle={BLOG.title}
-            siteDescription={BLOG.description}
+            siteTitle={config.title}
+            siteDescription={config.description}
             postTitle={navBarTitle}
             onClick={handleClickHeader}
           />

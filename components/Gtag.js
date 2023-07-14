@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useConfig } from '@/lib/nobelium-config'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
 import * as gtag from '@/lib/gtag'
 
 const Gtag = () => {
-  const config = useConfig()
+  // const config = useConfig()
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = url => {

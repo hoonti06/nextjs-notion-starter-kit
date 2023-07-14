@@ -1,4 +1,6 @@
-import { config } from '@/lib/server/config'
+import React from "react"
+// import { config } from '@/lib/server/config'
+import * as config from '@/lib/config'
 
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'

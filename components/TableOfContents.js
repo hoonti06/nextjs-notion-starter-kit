@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { getPageTableOfContents } from 'notion-utils'
 import cn from 'classnames'
+import React from "react";
 
 export default function TableOfContents ({ blockMap, className, style }) {
   const collectionId = Object.keys(blockMap.collection)[0]

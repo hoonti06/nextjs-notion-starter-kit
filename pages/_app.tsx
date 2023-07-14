@@ -28,11 +28,31 @@ import {
   posthogId
 } from '@/lib/config'
 
+import 'prismjs/themes/prism.css'
+import 'react-notion-x/src/styles.css'
+import 'katex/dist/katex.min.css'
+// import App from 'next/app'
+import '@/styles/globals.css'
+import '@/styles/notion.css'
+import dynamic from 'next/dynamic'
+// import loadLocale from '@/assets/i18n'
+import { ConfigProvider } from '@/lib/nobelium-config'
+// import { LocaleProvider } from '@/lib/locale'
+import { prepareDayjs } from '@/lib/dayjs'
+import { ThemeProvider } from '@/lib/theme'
+import Scripts from '@/components/Scripts'
+import * as config from '@/lib/config'
+
+const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
+const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
+
 if (!isServer) {
   bootstrap()
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export default function App({ Component, pageProps, config }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
@@ -61,5 +81,34 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <ConfigProvider value={config}>
+      <Scripts />
+      <ThemeProvider>
+        <>
+          {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ackee' && (
+            <Ackee
+              ackeeServerUrl={config.analytics.ackeeConfig.dataAckeeServer}
+              ackeeDomainId={config.analytics.ackeeConfig.domainId}
+            />
+          )}
+          {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
+          <Component {...pageProps} />
+        </>
+      </ThemeProvider>
+    </ConfigProvider>
+  )
+}
+
+App.getInitialProps = async ctx => {
+  // const config = typeof window === 'object'
+  //   ? await fetch('/api/config').then(res => res.json())
+  //   : await import('@/lib/server/config').then(module => module["clientConfig"])
+
+  prepareDayjs(config.timezone)
+
+  return {
+    ...App.getInitialProps(ctx),
+    config
+  }
 }

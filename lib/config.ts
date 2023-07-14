@@ -61,6 +61,61 @@ export const youtube: string | null = getSiteConfig('youtube', null)
 export const linkedin: string | null = getSiteConfig('linkedin', null)
 export const newsletter: string | null = getSiteConfig('newsletter', null)
 export const zhihu: string | null = getSiteConfig('zhihu', null)
+export const email: string | null = getSiteConfig('email', null)
+export const link: string | null = getSiteConfig('link', null)
+export const lang: string | null = getSiteConfig('lang', null)
+export const timezone: string | null = getSiteConfig('timezone', null)
+export const appearance: string | null = getSiteConfig('appearance', null)
+export const font: string | null = getSiteConfig('font', null)
+export const lightBackground: string | null = getSiteConfig('lightBackground', null)
+export const darkBackground: string | null = getSiteConfig('darkBackground', null)
+export const path: string | null = getSiteConfig('path', null)
+export const since: string | null = getSiteConfig('since', null)
+export const postsPerPage: string | null = getSiteConfig('postsPerPage', null)
+export const sortByDate: boolean = getSiteConfig('sortByDate', null)
+export const showAbout: boolean = getSiteConfig('sortByDate', null)
+export const showArchive: boolean = getSiteConfig('sortByDate', null)
+export const autoCollapsedNavBar: boolean = getSiteConfig('sortByDate', null)
+export const ogImageGenerateURL: string | null = getSiteConfig('ogImageGenerateURL', null)
+export const socialLink: string | null = getSiteConfig('socialLink', null)
+export const seo = {
+  keywords: ['Blog', 'Website', 'Notion'],
+  googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
+}
+export const notionPageId: string | null = getSiteConfig('notionPageId', null)
+export const notionAccessToken: string | null = getSiteConfig('notionAccessToken', null)
+export const comment = {
+  // support provider: gitalk, utterances, cusdis
+  provider: '', // leave it empty if you don't need any comment plugin
+  gitalkConfig: {
+    repo: '', // The repository of store comments
+    owner: '',
+    admin: [],
+    clientID: '',
+    clientSecret: '',
+    distractionFreeMode: false
+  },
+  utterancesConfig: {
+    repo: ''
+  },
+  cusdisConfig: {
+    appId: '', // data-app-id
+    host: 'https://cusdis.com', // data-host, change this if you're using self-hosted version
+    scriptSrc: 'https://cusdis.com/js/cusdis.es.js' // change this if you're using self-hosted version
+  }
+}
+
+export const analytics = {
+  provider: '', // Currently we support Google Analytics and Ackee, please fill with 'ga' or 'ackee', leave it empty to disable it.
+    ackeeConfig: {
+    tracker: '', // e.g 'https://ackee.craigary.net/tracker.js'
+      dataAckeeServer: '', // e.g https://ackee.craigary.net , don't end with a slash
+      domainId: '' // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
+  },
+  gaConfig: {
+    measurementId: '' // e.g: G-XXXXXXXXXX
+  }
+}
 
 export const getMastodonHandle = (): string | null => {
   if (!mastodon) {

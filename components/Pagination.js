@@ -1,9 +1,11 @@
 import Link from 'next/link'
-import { useConfig } from '@/lib/nobelium-config'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
 import { useLocale } from '@/lib/locale'
+import React from "react";
 
 const Pagination = ({ page, showNext }) => {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
   const locale = useLocale()
   const currentPage = +page
   let additionalClassName = 'justify-between'
@@ -17,19 +19,19 @@ const Pagination = ({ page, showNext }) => {
         <Link
           href={
             currentPage - 1 === 1
-              ? `${BLOG.path || '/'}`
+              ? `${config.path || '/'}`
               : `/page/${currentPage - 1}`
           }
         >
           <button rel="prev" className="block cursor-pointer">
-            ← {locale.PAGINATION.PREV}
+            ← {'Prev'/*locale.PAGINATION.PREV*/}
           </button>
         </Link>
       )}
       {showNext && (
         <Link href={`/page/${currentPage + 1}`}>
           <button rel="next" className="block cursor-pointer">
-            {locale.PAGINATION.NEXT} →
+            {'Next'/*locale.PAGINATION.NEXT*/} →
           </button>
         </Link>
       )}

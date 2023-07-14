@@ -1,13 +1,16 @@
-import { useConfig } from '@/lib/nobelium-config'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
 import { useEffect } from 'react'
+import React from "react";
+
 const Utterances = ({ issueTerm, layout }) => {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
 
   useEffect(() => {
     const theme =
-      BLOG.appearance === 'auto'
+      config.appearance === 'auto'
         ? 'preferred-color-scheme'
-        : BLOG.appearance === 'light'
+        : config.appearance === 'light'
           ? 'github-light'
           : 'github-dark'
     const script = document.createElement('script')
@@ -15,7 +18,7 @@ const Utterances = ({ issueTerm, layout }) => {
     script.setAttribute('src', 'https://utteranc.es/client.js')
     script.setAttribute('crossorigin', 'anonymous')
     script.setAttribute('async', true)
-    script.setAttribute('repo', BLOG.comment.utterancesConfig.repo)
+    script.setAttribute('repo', config.comment.utterancesConfig.repo)
     script.setAttribute('issue-term', issueTerm)
     script.setAttribute('theme', theme)
     anchor.appendChild(script)

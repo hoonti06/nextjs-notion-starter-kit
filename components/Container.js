@@ -1,17 +1,19 @@
 import Header from '@/components/Header'
-import { useConfig } from '@/lib/nobelium-config'
+// import { useConfig } from '@/lib/nobelium-config'
+import * as config from '@/lib/config'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import NobeliumFooter from "@/components/nobelium-Footer";
+import React from "react";
 // import BlogPost from './BlogPost'
 
 const Container = ({ children, layout, fullWidth, ...customMeta }) => {
-  const BLOG = useConfig()
+  // const BLOG = useConfig()
 
-  const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link
+  const url = config.path.length ? `${config.link}/${config.path}` : config.link
   const meta = {
-    title: BLOG.title,
+    title: config.title,
     type: 'website',
     ...customMeta
   }
@@ -22,17 +24,17 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         {/* <meta content={BLOG.darkBackground} name="theme-color" /> */}
         <meta name="robots" content="follow, index" />
         <meta charSet="UTF-8" />
-        {BLOG.seo.googleSiteVerification && (
+        {config.seo.googleSiteVerification && (
           <meta
             name="google-site-verification"
-            content={BLOG.seo.googleSiteVerification}
+            content={config.seo.googleSiteVerification}
           />
         )}
-        {BLOG.seo.keywords && (
-          <meta name="keywords" content={BLOG.seo.keywords.join(', ')} />
+        {config.seo.keywords && (
+          <meta name="keywords" content={config.seo.keywords.join(', ')} />
         )}
         <meta name="description" content={meta.description} />
-        <meta property="og:locale" content={BLOG.lang} />
+        <meta property="og:locale" content={config.lang} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
         <meta
@@ -41,7 +43,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         />
         <meta
           property="og:image"
-          content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+          content={`${config.ogImageGenerateURL}/${encodeURIComponent(
             meta.title
           )}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
         />
@@ -51,7 +53,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         <meta name="twitter:title" content={meta.title} />
         <meta
           name="twitter:image"
-          content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+          content={`${config.ogImageGenerateURL}/${encodeURIComponent(
             meta.title
           )}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
         />
@@ -61,12 +63,12 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
               property="article:published_time"
               content={meta.date}
             />
-            <meta property="article:author" content={BLOG.author} />
+            <meta property="article:author" content={config.author} />
           </>
         )}
       </Head>
       <div
-        className={`wrapper ${BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
+        className={`wrapper ${config.font === 'serif' ? 'font-serif' : 'font-sans'
           }`}
       >
         <Header
