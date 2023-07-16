@@ -3,6 +3,7 @@ import { siteConfig } from './lib/site-config'
 export default siteConfig({
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+  title: 'hoonti06',
   email: 'hoonti06@gmail.com',
   link: 'https://nobelium.vercel.app',
   lang: 'en-US', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
