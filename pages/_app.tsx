@@ -12,6 +12,7 @@ import 'prismjs/themes/prism-coy.css'
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css'
 import 'styles/global.css'
+import App from 'next/app'
 // this might be better for dark mode
 // import 'prismjs/themes/prism-okaidia.css'
 // global style overrides for notion
@@ -52,7 +53,7 @@ if (!isServer) {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export default function App({ Component, pageProps, config, locale }: AppProps) {
+export default function MyApp({ Component, pageProps, config, locale }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
@@ -102,7 +103,7 @@ export default function App({ Component, pageProps, config, locale }: AppProps) 
   )
 }
 
-App.getInitialProps = async ctx => {
+MyApp.getInitialProps = async ctx => {
   // const config = typeof window === 'object'
   //   ? await fetch('/api/config').then(res => res.json())
   //   : await import('@/lib/server/config').then(module => module["clientConfig"])
@@ -110,7 +111,7 @@ App.getInitialProps = async ctx => {
   prepareDayjs(config.timezone)
 
   return {
-    ...App.getInitialProps(ctx),
+     ...await App.getInitialProps(ctx),
     config,
     locale: await loadLocale('basic', config.lang)
   }
