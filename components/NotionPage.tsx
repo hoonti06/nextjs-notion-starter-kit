@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import cs from 'classnames'
 import { PageBlock } from 'notion-types'
-import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
+import {formatDate, getBlockTitle, getPageProperty, getTextContent} from 'notion-utils'
 import BodyClassName from 'react-body-classname'
 import { NotionRenderer } from 'react-notion-x'
 import TweetEmbed from 'react-tweet-embed'
@@ -27,50 +27,115 @@ import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
 import styles from './styles.module.css'
+import {createElement as h} from "react";
 
 // -----------------------------------------------------------------------------
 // dynamic imports for optional components
 // -----------------------------------------------------------------------------
 
-const Code = dynamic(() =>
-  import('react-notion-x/build/third-party/code').then(async (m) => {
-    // add / remove any prism syntaxes here
-    await Promise.allSettled([
-      import('prismjs/components/prism-markup-templating.js'),
-      import('prismjs/components/prism-markup.js'),
-      import('prismjs/components/prism-bash.js'),
-      import('prismjs/components/prism-c.js'),
-      import('prismjs/components/prism-cpp.js'),
-      import('prismjs/components/prism-csharp.js'),
-      import('prismjs/components/prism-docker.js'),
-      import('prismjs/components/prism-java.js'),
-      import('prismjs/components/prism-js-templates.js'),
-      import('prismjs/components/prism-coffeescript.js'),
-      import('prismjs/components/prism-diff.js'),
-      import('prismjs/components/prism-git.js'),
-      import('prismjs/components/prism-go.js'),
-      import('prismjs/components/prism-graphql.js'),
-      import('prismjs/components/prism-handlebars.js'),
-      import('prismjs/components/prism-less.js'),
-      import('prismjs/components/prism-makefile.js'),
-      import('prismjs/components/prism-markdown.js'),
-      import('prismjs/components/prism-objectivec.js'),
-      import('prismjs/components/prism-ocaml.js'),
-      import('prismjs/components/prism-python.js'),
-      import('prismjs/components/prism-reason.js'),
-      import('prismjs/components/prism-rust.js'),
-      import('prismjs/components/prism-sass.js'),
-      import('prismjs/components/prism-scss.js'),
-      import('prismjs/components/prism-solidity.js'),
-      import('prismjs/components/prism-sql.js'),
-      import('prismjs/components/prism-stylus.js'),
-      import('prismjs/components/prism-swift.js'),
-      import('prismjs/components/prism-wasm.js'),
-      import('prismjs/components/prism-yaml.js')
-    ])
-    return m.Code
-  })
-)
+const Code = dynamic(async () => {
+  return function CodeSwitch (props) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    switch (getTextContent(props.block.properties.language)) {
+      case 'Mermaid':
+        return h(
+          dynamic(() => {
+            return import('@/components/notion-blocks/Mermaid').then(module => module.default)
+          }, { ssr: false }),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          props
+        )
+      default:
+        return h(
+          dynamic(() => {
+            return import('react-notion-x/build/third-party/code').then(async module => {
+              // Additional prismjs syntax
+              await Promise.all([
+                import('prismjs/components/prism-markup-templating'),
+                import('prismjs/components/prism-markup'),
+                import('prismjs/components/prism-bash'),
+                import('prismjs/components/prism-c'),
+                import('prismjs/components/prism-cpp'),
+                import('prismjs/components/prism-csharp'),
+                import('prismjs/components/prism-docker'),
+                import('prismjs/components/prism-java'),
+                import('prismjs/components/prism-js-templates'),
+                import('prismjs/components/prism-coffeescript'),
+                import('prismjs/components/prism-diff'),
+                import('prismjs/components/prism-git'),
+                import('prismjs/components/prism-go'),
+                import('prismjs/components/prism-graphql'),
+                import('prismjs/components/prism-handlebars'),
+                import('prismjs/components/prism-less'),
+                import('prismjs/components/prism-makefile'),
+                import('prismjs/components/prism-markdown'),
+                import('prismjs/components/prism-objectivec'),
+                import('prismjs/components/prism-ocaml'),
+                import('prismjs/components/prism-python'),
+                import('prismjs/components/prism-reason'),
+                import('prismjs/components/prism-rust'),
+                import('prismjs/components/prism-sass'),
+                import('prismjs/components/prism-scss'),
+                import('prismjs/components/prism-solidity'),
+                import('prismjs/components/prism-sql'),
+                import('prismjs/components/prism-stylus'),
+                import('prismjs/components/prism-swift'),
+                import('prismjs/components/prism-wasm'),
+                import('prismjs/components/prism-yaml'),
+              ])
+              return module.Code
+            })
+          }),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          props
+        )
+    }
+  }
+})
+
+
+// const Code = dynamic(() =>
+//   import('react-notion-x/build/third-party/code').then(async (m) => {
+//     // add / remove any prism syntaxes here
+//     await Promise.allSettled([
+//       import('prismjs/components/prism-markup-templating.js'),
+//       import('prismjs/components/prism-markup.js'),
+//       import('prismjs/components/prism-bash.js'),
+//       import('prismjs/components/prism-c.js'),
+//       import('prismjs/components/prism-cpp.js'),
+//       import('prismjs/components/prism-csharp.js'),
+//       import('prismjs/components/prism-docker.js'),
+//       import('prismjs/components/prism-java.js'),
+//       import('prismjs/components/prism-js-templates.js'),
+//       import('prismjs/components/prism-coffeescript.js'),
+//       import('prismjs/components/prism-diff.js'),
+//       import('prismjs/components/prism-git.js'),
+//       import('prismjs/components/prism-go.js'),
+//       import('prismjs/components/prism-graphql.js'),
+//       import('prismjs/components/prism-handlebars.js'),
+//       import('prismjs/components/prism-less.js'),
+//       import('prismjs/components/prism-makefile.js'),
+//       import('prismjs/components/prism-markdown.js'),
+//       import('prismjs/components/prism-objectivec.js'),
+//       import('prismjs/components/prism-ocaml.js'),
+//       import('prismjs/components/prism-python.js'),
+//       import('prismjs/components/prism-reason.js'),
+//       import('prismjs/components/prism-rust.js'),
+//       import('prismjs/components/prism-sass.js'),
+//       import('prismjs/components/prism-scss.js'),
+//       import('prismjs/components/prism-solidity.js'),
+//       import('prismjs/components/prism-sql.js'),
+//       import('prismjs/components/prism-stylus.js'),
+//       import('prismjs/components/prism-swift.js'),
+//       import('prismjs/components/prism-wasm.js'),
+//       import('prismjs/components/prism-yaml.js')
+//     ])
+//     return m.Code
+//   })
+// )
 
 const Collection = dynamic(() =>
   import('react-notion-x/build/third-party/collection').then(
