@@ -2,7 +2,7 @@ import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 // import { useConfig } from '@/lib/nobelium-config'
-import * as Config from '@/lib/config'
+import * as config from '@/lib/config'
 import { useLocale } from '@/lib/locale'
 import useTheme from '@/lib/theme'
 import React from "react";
@@ -11,8 +11,8 @@ const NavBar = () => {
   // const BLOG = useConfig()
   const locale = useLocale()
   const links = [
-    { id: 0, name: locale.NAV.INDEX, to: Config.path || '/', show: true },
-    { id: 1, name: locale.NAV.ABOUT, to: '/about', show: Config.showAbout },
+    { id: 0, name: locale.NAV.INDEX, to: config.path || '/', show: true },
+    { id: 1, name: locale.NAV.ABOUT, to: '/about', show: config.showAbout },
     { id: 2, name: locale.NAV.RSS, to: '/feed', show: true, external: true },
     { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
   ]
@@ -51,7 +51,7 @@ export default function Header ({ navBarTitle, fullWidth }) {
     [dark]
   )
 
-  const useSticky = !Config.autoCollapsedNavBar
+  const useSticky = !config.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const handler = useCallback(([entry]) => {
@@ -104,19 +104,19 @@ export default function Header ({ navBarTitle, fullWidth }) {
           />
         </svg>
         <div className="flex items-center">
-          <Link href="/" aria-label={Config.title}>
+          <Link href="/" aria-label={config.title}>
             <Image
               src={favicon}
               width={24}
               height={24}
-              alt={Config.title}
+              alt={config.title}
               onError={() => setFavicon(true)}
             />
           </Link>
           <HeaderName
             ref={titleRef}
-            siteTitle={Config.title}
-            siteDescription={Config.description}
+            siteTitle={config.title}
+            siteDescription={config.description}
             postTitle={navBarTitle}
             onClick={handleClickHeader}
           />
