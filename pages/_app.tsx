@@ -35,9 +35,9 @@ import 'katex/dist/katex.min.css'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
 import dynamic from 'next/dynamic'
-// import loadLocale from '@/assets/i18n'
+import loadLocale from '@/assets/i18n'
 import { ConfigProvider } from '@/lib/nobelium-config'
-// import { LocaleProvider } from '@/lib/locale'
+import { LocaleProvider } from '@/lib/locale'
 import { prepareDayjs } from '@/lib/dayjs'
 import { ThemeProvider } from '@/lib/theme'
 import Scripts from '@/components/Scripts'
@@ -52,7 +52,7 @@ if (!isServer) {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export default function App({ Component, pageProps, config }: AppProps) {
+export default function App({ Component, pageProps, config, locale }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
@@ -84,18 +84,20 @@ export default function App({ Component, pageProps, config }: AppProps) {
   return (
     <ConfigProvider value={config}>
       <Scripts />
-      <ThemeProvider>
-        <>
-          {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ackee' && (
-            <Ackee
-              ackeeServerUrl={config.analytics.ackeeConfig.dataAckeeServer}
-              ackeeDomainId={config.analytics.ackeeConfig.domainId}
-            />
-          )}
-          {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
-          <Component {...pageProps} />
-        </>
-      </ThemeProvider>
+      <LocaleProvider value={locale}>
+        <ThemeProvider>
+          <>
+            {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ackee' && (
+              <Ackee
+                ackeeServerUrl={config.analytics.ackeeConfig.dataAckeeServer}
+                ackeeDomainId={config.analytics.ackeeConfig.domainId}
+              />
+            )}
+            {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
+            <Component {...pageProps} />
+          </>
+        </ThemeProvider>
+      </LocaleProvider>
     </ConfigProvider>
   )
 }
@@ -109,6 +111,7 @@ App.getInitialProps = async ctx => {
 
   return {
     ...App.getInitialProps(ctx),
-    config
+    config,
+    locale: await loadLocale('basic', config.lang)
   }
 }

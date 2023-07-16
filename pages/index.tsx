@@ -5,13 +5,13 @@
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
-import { getAllPosts } from '@/lib/notion'
+import {getAllPosts} from '@/lib/notion'
 import * as config from '@/lib/config'
 // import { useConfig } from '@/lib/nobelium-config'
 import React from "react";
 
-export async function getStaticProps () {
-  const posts = await getAllPosts({ includePages: false })
+export async function getStaticProps() {
+  const posts = await getAllPosts({includePages: false})
   const postsToShow = posts.slice(0, config.postsPerPage)
   const totalPosts = posts.length
   const showNext = totalPosts > config.postsPerPage
@@ -25,7 +25,7 @@ export async function getStaticProps () {
   }
 }
 
-export default function Blog ({ postsToShow, page, showNext }) {
+export default function Blog({postsToShow, page, showNext}) {
   // const { title, description } = useConfig()
 
   return (
@@ -33,9 +33,10 @@ export default function Blog ({ postsToShow, page, showNext }) {
     // @ts-ignore
     <Container title={config.title} description={config.description}>
       {postsToShow.map(post => (
-        <BlogPost key={post.id} post={post} />
+        <BlogPost key={post.id} post={post}/>
+        // <NotionPage {...props} />
       ))}
-      {showNext && <Pagination page={page} showNext={showNext} />}
+      {showNext && <Pagination page={page} showNext={showNext}/>}
     </Container>
   )
 }
